@@ -32,6 +32,10 @@ class ChangeCommentsTable extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             //
+            $table->dropForeign('comments_user_id_foreign');
+            $table->dropForeign('comments_article_id_foreign');
+            $table->dropColumn('user_id');
+            $table->dropColumn('article_id');
         });
     }
 }

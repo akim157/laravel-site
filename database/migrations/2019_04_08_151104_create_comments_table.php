@@ -23,6 +23,8 @@ class CreateCommentsTable extends Migration
 
             $table->integer('parent_id');
             $table->timestamps();
+
+            $table->engine = 'MyISAM';
         });
     }
 

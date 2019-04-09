@@ -21,6 +21,8 @@ class CreateArticlesTable extends Migration
             $table->string('alias', 150)->unique();
             $table->string('img', 255);
             $table->timestamps();
+
+            $table->engine = 'MyISAM';
         });
     }
 
