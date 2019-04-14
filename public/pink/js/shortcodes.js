@@ -24,7 +24,7 @@ $(document).ready(function(){
     });
     
     //newsletter form
-    var input_newsletter = $('.newsletter-section .text-field');
+    var input_newsletter = $('.newsletter-section ..env-field');
     var prev_input_newsletter_val = null;
     
     input_newsletter.focus(function() {

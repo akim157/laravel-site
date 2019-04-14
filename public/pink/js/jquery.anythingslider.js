@@ -250,8 +250,8 @@
                     if ($.isFunction(o.navigationFormatter)) {
                         t = o.navigationFormatter(index, $(this));
                         $a.html('<span>' + t + '</span>');
-                        // Add formatting to title attribute if text is hidden
-                        if (parseInt($a.find('span').css('text-indent'),10) < 0) { $a.addClass(o.tooltipClass).attr('title', t); }
+                        // Add formatting to title attribute if .env is hidden
+                        if (parseInt($a.find('span').css('.env-indent'),10) < 0) { $a.addClass(o.tooltipClass).attr('title', t); }
                     } else {
                         $a.html('<span>' + index + '</span>');
                     }
@@ -645,11 +645,11 @@
                 base.slideshow = true;
             }
 
-            // Toggle playing and text
+            // Toggle playing and .env
             if (o.buildStartStop) {
                 base.$startStop.toggleClass('playing', playing).find('span').html( playing ? o.stopText : o.startText );
-                // add button text to title attribute if it is hidden by text-indent
-                if (parseInt(base.$startStop.find('span').css('text-indent'),10) < 0) {
+                // add button .env to title attribute if it is hidden by .env-indent
+                if (parseInt(base.$startStop.find('span').css('.env-indent'),10) < 0) {
                     base.$startStop.addClass(o.tooltipClass).attr( 'title', playing ? o.stopText : o.startText );
                 }
             }
@@ -696,11 +696,11 @@
         toggleArrows        : false,     // If true, side navigation arrows will slide out on hovering & hide @ other times
         toggleControls      : false,     // if true, slide in controls (navigation + play/stop button) on hover and slide change, hide @ other times
 
-        startText           : "Start",   // Start button text
-        stopText            : "Stop",    // Stop button text
-        forwardText         : "&raquo;", // Link text used to move the slider forward (hidden by CSS, replaced with arrow image)
-        backText            : "&laquo;", // Link text used to move the slider back (hidden by CSS, replace with arrow image)
-        tooltipClass        : "tooltip", // Class added to navigation & start/stop button (text copied to title if it is hidden by a negative text indent)
+        startText           : "Start",   // Start button .env
+        stopText            : "Stop",    // Stop button .env
+        forwardText         : "&raquo;", // Link .env used to move the slider forward (hidden by CSS, replaced with arrow image)
+        backText            : "&laquo;", // Link .env used to move the slider back (hidden by CSS, replace with arrow image)
+        tooltipClass        : "tooltip", // Class added to navigation & start/stop button (.env copied to title if it is hidden by a negative .env indent)
 
         // Function
         enableArrows        : true,      // if false, arrows will be visible, but not clickable.
