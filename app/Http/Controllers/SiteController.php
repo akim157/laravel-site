@@ -14,13 +14,17 @@ class SiteController extends Controller
     protected $a_rep; //объект статей
     protected $m_rep; //объект меню
 
+    protected $keywords; //ключевые слова
+    protected $meta_desc; //описание
+    protected $title; //заголовок
+
     protected $template; //имя шаблона
     protected $vars = []; //массив передаваемых данных в шаблон
 
     protected $contentRightBar = false; //состояние видимости правого sidebar
     protected $contentLeftBar = false; //состояние видимости левого sidebar
 
-    protected $bar = false; //состояние видимости sidebar
+    protected $bar = 'no'; //состояние видимости sidebar
 
     public function __construct(MenusRepository $m_rep)
     {
@@ -36,6 +40,13 @@ class SiteController extends Controller
             $rightBar = view(env('THEME').'.rightbar')->with('content_rightbar', $this->contentRightBar)->render();
             $this->vars['rightBar'] = $rightBar;
         }
+        $this->vars['bar'] = $this->bar;
+
+        $this->vars['keywords'] = $this->keywords;
+        $this->vars['meta_desc'] = $this->meta_desc;
+        $this->vars['title'] = $this->title;
+
+        $this->vars['footer'] = view(env('THEME').'.footer')->render();
         return view($this->template)->with($this->vars);
     }
 

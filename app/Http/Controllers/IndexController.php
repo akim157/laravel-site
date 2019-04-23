@@ -18,7 +18,7 @@ class IndexController extends SiteController
         $this->s_rep = $s_rep;
         $this->p_rep = $p_rep;
         $this->a_rep = $a_rep;
-        $this->bar = 'right';
+//        $this->bar = 'right';
         $this->template = env('THEME').'.index';
     }
 
@@ -36,6 +36,10 @@ class IndexController extends SiteController
         $this->vars['sliders'] = view(env('THEME').'.slider', $data)->render();
         $articles = $this->getArticles();
         $this->contentRightBar = view(env('THEME').'.sidebar')->with('articles', $articles)->render();
+
+        $this->keywords = 'Home Page';
+        $this->meta_desc = 'Home Page';
+        $this->title = 'Home Page';
 
         return $this->renderOutput();
     }

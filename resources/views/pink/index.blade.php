@@ -12,3 +12,7 @@
 @section('sidebar')
     {!! $rightBar !!}
 @endsection
+
+@section('footer')
+    {!! $footer !!}
+@endsection
