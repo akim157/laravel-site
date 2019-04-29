@@ -13,6 +13,7 @@ class SiteController extends Controller
     protected $s_rep; //объект слайдера
     protected $a_rep; //объект статей
     protected $m_rep; //объект меню
+    protected $c_rep; //объект комментариев
 
     protected $keywords; //ключевые слова
     protected $meta_desc; //описание
