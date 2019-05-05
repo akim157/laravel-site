@@ -28,6 +28,8 @@
     <meta name="description" content="{{ (isset($meta_desc)) ? $meta_desc : '' }}">
     <meta name="keywords" content="{{ (isset($keywords)) ? $keywords : '' }}">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ $title ?? 'Pink'}}</title>
 
     <!-- [favicon] begin -->
@@ -79,6 +81,8 @@
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/shortcodes.js"></script>
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.colorbox-min.js"></script> <!-- nav -->
     <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/jquery.tweetable.js"></script>
+    <!--myscripts-->
+    <script type="text/javascript" src="{{ asset(env('THEME')) }}/js/myscripts.js"></script>
 
 </head>
 <!-- END HEAD -->
@@ -135,6 +139,7 @@
                 <!-- START SIDEBAR -->
                 @yield('sidebar')
                 <!-- END SIDEBAR -->
+                <div class="wrap_result"></div>
                 <!-- START EXTRA CONTENT -->
                 <!-- END EXTRA CONTENT -->
             </div>

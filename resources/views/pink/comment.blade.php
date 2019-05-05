@@ -3,7 +3,7 @@
         <div id="comment-{{ $item->id }}" class="comment-container">
             <div class="comment-author vcard">
                 @set($hash, isset($item->email) ? md5($item->email) : md5($item->user->email))
-                <img alt="" src="http://www.gravatar.com/avatar/{{ $hash }}?d=mm&s=75" class="avatar" height="75" width="75" />
+                <img alt="" src="https://www.gravatar.com/avatar/{{ $hash }}?d=mm&s=75" class="avatar" height="75" width="75" />
                 <cite class="fn">{{ $item->user->name ?? $item->name }}</cite>
             </div>
             <!-- .comment-author .vcard -->
@@ -13,18 +13,23 @@
                         <a href="#comment-{{ $item->id }}">
                             {{ is_object($item->created_at) ? $item->created_at->format('F d, Y \a\t H:i') : '' }}</a>
                     </div>
-                    <div class="commentNumber">#&nbsp;1</div>
+                    <div class="commentNumber">#&nbsp;</div>
                 </div>
                 <div class="comment-body">
-                    <p>Hi all, i’m a guest and this is the guest’s awesome comments template!</p>
+                    <p>{{ $item->text }}</p>
                 </div>
                 <div class="reply group">
-                    <a class="comment-reply-link" href="#respond" onclick="return addComment.moveForm(&quot;comment-2&quot;, &quot;2&quot;, &quot;respond&quot;, &quot;41&quot;)">Reply</a>
+                    <a class="comment-reply-link" href="#respond" onclick="return addComment.moveForm(&quot;comment-{{ $item->id }}&quot;, &quot;{{ $item->id }}&quot;, &quot;respond&quot;, &quot;{{ $item->article->id }}&quot;)">Reply</a>
                 </div>
                 <!-- .reply -->
             </div>
             <!-- .comment-meta .commentmetadata -->
         </div>
         <!-- #comment-##  -->
+        @if(isset($com[$item->id]))
+            <ul class="children">
+                @include(env('THEME').'.comment', ['items' => $com[$item->id]])
+            </ul>
+        @endif
     </li>
 @endforeach

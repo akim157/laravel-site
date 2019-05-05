@@ -62,7 +62,7 @@ class ArticlesController extends SiteController
             //WHERE `category_id` = $id
             $where = ['category_id', $id];
         }
-        $articles = $this->a_rep->get(['title', 'alias', 'created_at', 'img', 'desc', 'user_id', 'category_id', 'id'], false, true, $where);
+        $articles = $this->a_rep->get(['title', 'alias', 'created_at', 'img', 'desc', 'user_id', 'category_id', 'id', 'keywords', 'meta_desc'], false, true, $where);
         if($articles)
         {
             $articles->load('user', 'category', 'comments');
@@ -106,6 +106,11 @@ class ArticlesController extends SiteController
             $article->img = json_decode($article->img);
         }
 //        dd($article->comments->groupBy('parent_id'));
+
+        $this->title = $article->title;
+        $this->keywords = $article->keywords;
+        $this->meta_desc = $article->meta_desc;
+
         $content = view(env('THEME').'.article_content')->with('article', $article)->render();
         $this->vars['content'] = $content;
         $comments = $this->getComments(config('settings.recent_comments'));
