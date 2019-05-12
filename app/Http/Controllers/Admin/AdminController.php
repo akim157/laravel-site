@@ -46,16 +46,16 @@ class AdminController extends \Corp\Http\Controllers\Controller
     public function getMenu()
     {
         return Menu::make('adminMenu', function($menu){
-//            $menu->add('Статьи', ['route' => 'admin.articles.index']);
-//            $menu->add('Портфолио', ['route' => 'admin.articles.index']);
-//            $menu->add('Меню', ['route' => 'admin.articles.index']);
-//            $menu->add('Пользователи', ['route' => 'admin.articles.index']);
-//            $menu->add('Привилегии', ['route' => 'admin.articles.index']);
-            $menu->add('Статьи', ['route' => 'home']);
-            $menu->add('Портфолио', ['route' => 'home']);
-            $menu->add('Меню', ['route' => 'home']);
-            $menu->add('Пользователи', ['route' => 'home']);
-            $menu->add('Привилегии', ['route' => 'home']);
+            $menu->add('Статьи', ['route' => 'articles.index']);
+            $menu->add('Портфолио', ['route' => 'articles.index']);
+            $menu->add('Меню', ['route' => 'menus.index']);
+            $menu->add('Пользователи', ['route' => 'articles.index']);
+            $menu->add('Привилегии', ['route' => 'permissions.index']);
+//            $menu->add('Статьи', ['route' => 'home']);
+//            $menu->add('Портфолио', ['route' => 'home']);
+//            $menu->add('Меню', ['route' => 'home']);
+//            $menu->add('Пользователи', ['route' => 'home']);
+//            $menu->add('Привилегии', ['route' => 'home']);
             $menu->add('Выход', ['route' => 'logout']);
         });
     }
