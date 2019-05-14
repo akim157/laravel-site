@@ -24,7 +24,7 @@
                     <span class="sublabel">Родитель:</span><br />
                 </label>
                 <div class="input-prepend">
-                    {!! Form::select('parent', $menus, isset($menu->parent) ? $menu->parent : null) !!}
+                    {!! Form::select('parent_id', $menus, isset($menu->parent) ? $menu->parent : null) !!}
                 </div>
 
             </li>
@@ -151,3 +151,13 @@
 
     </div>
 </div>
+
+<script>
+    jQuery(function($) {
+        $('#accordion').accordion({
+            activate: function(e, obj) {
+                obj.newPanel.prev().find('input[type=radio]').attr('checked', 'checked');
+            }
+        });
+    });
+</script>
