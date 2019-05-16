@@ -30,14 +30,14 @@ class MenusController extends AdminController
         $this->a_rep = $a_rep;
         $this->p_rep = $p_rep;
 
-        $this->template = env('THEME').'.admin.menus';
+        $this->template = config('settings.theme').'.admin.menus';
     }
 
     public function index()
     {
         //
         $menu = $this->getMenus();
-        $this->content = view(env('THEME').'.admin.menus_content')->with('menus', $menu)->render();
+        $this->content = view(config('settings.theme').'.admin.menus_content')->with('menus', $menu)->render();
         return $this->renderOutput();
     }
 
@@ -107,7 +107,7 @@ class MenusController extends AdminController
             return $returnPortfolios;
         },[]);
 
-        $this->content = view(env('THEME').'.admin.menus_create_content')->with(['menus' => $menus, 'categories' => $list, 'filters' => $filters, 'articles' => $articles, 'portfolios' => $portfolios])->render();
+        $this->content = view(config('settings.theme').'.admin.menus_create_content')->with(['menus' => $menus, 'categories' => $list, 'filters' => $filters, 'articles' => $articles, 'portfolios' => $portfolios])->render();
 
         return $this->renderOutput();
     }
@@ -220,7 +220,7 @@ class MenusController extends AdminController
             return $returnPortfolios;
         },[]);
 
-        $this->content = view(env('THEME').'.admin.menus_create_content')->with(['menu' => $menu, 'type' => $type, 'option' => $option, 'menus' => $menus, 'categories' => $list, 'filters' => $filters, 'articles' => $articles, 'portfolios' => $portfolios])->render();
+        $this->content = view(config('settings.theme').'.admin.menus_create_content')->with(['menu' => $menu, 'type' => $type, 'option' => $option, 'menus' => $menus, 'categories' => $list, 'filters' => $filters, 'articles' => $articles, 'portfolios' => $portfolios])->render();
 
         return $this->renderOutput();
     }
@@ -232,9 +232,14 @@ class MenusController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, \Corp\Menu $menu)
     {
-        //
+        $result = $this->m_rep->updateMenu($request, $menu);
+        if(is_array($result) && !empty($result['error']))
+        {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     /**
@@ -243,8 +248,13 @@ class MenusController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\Corp\Menu $menu)
     {
-        //
+        $result = $this->m_rep->deleteMenu($menu);
+        if(is_array($result) && !empty($result['error']))
+        {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 }

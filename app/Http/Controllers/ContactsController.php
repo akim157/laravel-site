@@ -11,7 +11,7 @@ class ContactsController extends SiteController
     {
         parent::__construct(new \Corp\Repositories\MenusRepository(new \Corp\Menu));
         $this->bar = 'left';
-        $this->template = env('THEME').'.contacts';
+        $this->template = config('settings.theme').'.contacts';
     }
 
     public function index(Request $request)
@@ -21,10 +21,10 @@ class ContactsController extends SiteController
             //отправка письма
         }
         $this->title = 'Контакт';
-        $content = view(env('THEME').'.contact_content')->render();
+        $content = view(config('settings.theme').'.contact_content')->render();
         $this->vars['content'] = $content;
 
-        $this->contentLeftBar = view(env('THEME').'.contact_bar')->render();
+        $this->contentLeftBar = view(config('settings.theme').'.contact_bar')->render();
 
         return $this->renderOutput();
     }

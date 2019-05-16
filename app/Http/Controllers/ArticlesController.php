@@ -19,7 +19,7 @@ class ArticlesController extends SiteController
         $this->a_rep = $a_rep;
         $this->c_rep = $c_rep;
         $this->bar = 'right';
-        $this->template = env('THEME').'.articles';
+        $this->template = config('settings.theme').'.articles';
     }
     /**
      * Display a listing of the resource.
@@ -29,11 +29,11 @@ class ArticlesController extends SiteController
     public function index($cat_alias = false)
     {
         $articles = $this->getArticles($cat_alias);
-        $content = view(env('THEME').'.articles_content')->with('articles', $articles)->render();
+        $content = view(config('settings.theme').'.articles_content')->with('articles', $articles)->render();
         $this->vars['content'] = $content;
         $comments = $this->getComments(config('settings.recent_comments'));
         $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
-        $this->contentRightBar = view(env('THEME').'.articlesBar')->with(['comments' => $comments, 'portfolios' => $portfolios])->render();
+        $this->contentRightBar = view(config('settings.theme').'.articlesBar')->with(['comments' => $comments, 'portfolios' => $portfolios])->render();
         return $this->renderOutput();
     }
 
@@ -113,11 +113,11 @@ class ArticlesController extends SiteController
             $this->meta_desc = $article->meta_desc;
         }
 
-        $content = view(env('THEME').'.article_content')->with('article', $article)->render();
+        $content = view(config('settings.theme').'.article_content')->with('article', $article)->render();
         $this->vars['content'] = $content;
         $comments = $this->getComments(config('settings.recent_comments'));
         $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
-        $this->contentRightBar = view(env('THEME').'.articlesBar')->with(['comments' => $comments, 'portfolios' => $portfolios])->render();
+        $this->contentRightBar = view(config('settings.theme').'.articlesBar')->with(['comments' => $comments, 'portfolios' => $portfolios])->render();
         return $this->renderOutput();
 
     }

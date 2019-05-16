@@ -82,7 +82,7 @@ class CommentController extends Controller
         $data['created_at'] = (!empty($data['created_at'])) ?: $comment->created_at;
 
         $data['hash'] = md5($data['email']);
-        $view_comment = view(env('THEME').'.content_one_comment')->with('data', $data)->render();
+        $view_comment = view(config('settings.theme').'.content_one_comment')->with('data', $data)->render();
 
         return Response::json(['success' => true, 'comment' => $view_comment, 'data' => $data]);
     }

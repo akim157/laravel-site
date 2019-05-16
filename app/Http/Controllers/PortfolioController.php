@@ -12,7 +12,7 @@ class PortfolioController extends SiteController
         parent::__construct(new \Corp\Repositories\MenusRepository(new \Corp\Menu));
 
         $this->p_rep = $p_rep;
-        $this->template = env('THEME').'.portfolios';
+        $this->template = config('settings.theme').'.portfolios';
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class PortfolioController extends SiteController
 
         $portfolios = $this->getPortfolios();
 
-        $content = view(env('THEME').'.portfolios_content')->with('portfolios', $portfolios)->render();
+        $content = view(config('settings.theme').'.portfolios_content')->with('portfolios', $portfolios)->render();
         $this->vars['content'] = $content;
 
         return $this->renderOutput();
@@ -81,7 +81,7 @@ class PortfolioController extends SiteController
 //
         $portfolios = $this->getPortfolios(config('settings.other_portfolios'), false);
 
-        $content = view(env('THEME').'.portfolio_content')->with(['portfolio' => $portfolio, 'portfolios' => $portfolios])->render();
+        $content = view(config('settings.theme').'.portfolio_content')->with(['portfolio' => $portfolio, 'portfolios' => $portfolios])->render();
         $this->vars['content'] = $content;
 
         return $this->renderOutput();

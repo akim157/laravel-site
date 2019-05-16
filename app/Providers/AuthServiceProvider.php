@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Corp\Article;
 use Corp\Menu;
+use Corp\User;
 use Corp\Policies\ArticlePolicy;
 use Corp\Policies\PermissionPolicy;
 use Corp\Policies\MenusPolicy;
+use Corp\Policies\UserPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
         Article::class => ArticlePolicy::class,
         Permission::class => PermissionPolicy::class,
         Menu::class => MenusPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**
@@ -35,12 +38,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('VIEW_ADMIN', function($user){
-            dd($user);
             return $user->canDo(['VIEW_ADMIN', 'ADD_ARTICLES'], true);
         });
 
         Gate::define('VIEW_ADMIN_ARTICLES', function($user){
-            dd($user);
             return $user->canDo('VIEW_ADMIN_ARTICLES', true);
         });
 
@@ -50,6 +51,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('VIEW_ADMIN_MENU', function($user){
             return $user->canDo('VIEW_ADMIN_MENU', true);
+        });
+
+        Gate::define('EDIT_USERS', function($user){
+            return $user->canDo('EDIT_USERS', true);
         });
         //
     }

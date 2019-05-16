@@ -36,13 +36,13 @@ class SiteController extends Controller
     {
         $menu = $this->getMenu();
 
-        $this->vars['navigation'] = view(env('THEME').'.navigation')->with('menu', $menu)->render();
+        $this->vars['navigation'] = view(config('settings.theme').'.navigation')->with('menu', $menu)->render();
         if($this->contentRightBar) {
-            $rightBar = view(env('THEME').'.rightbar')->with('content_rightbar', $this->contentRightBar)->render();
+            $rightBar = view(config('settings.theme').'.rightbar')->with('content_rightbar', $this->contentRightBar)->render();
             $this->vars['rightBar'] = $rightBar;
         }
         if($this->contentLeftBar) {
-            $leftBar = view(env('THEME').'.leftBar')->with('content_leftBar', $this->contentLeftBar)->render();
+            $leftBar = view(config('settings.theme').'.leftBar')->with('content_leftBar', $this->contentLeftBar)->render();
             $this->vars['leftBar'] = $leftBar;
         }
         $this->vars['bar'] = $this->bar;
@@ -51,7 +51,7 @@ class SiteController extends Controller
         $this->vars['meta_desc'] = $this->meta_desc;
         $this->vars['title'] = $this->title;
 
-        $this->vars['footer'] = view(env('THEME').'.footer')->render();
+        $this->vars['footer'] = view(config('settings.theme').'.footer')->render();
         return view($this->template)->with($this->vars);
     }
 
